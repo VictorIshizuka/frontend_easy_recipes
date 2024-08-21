@@ -1,5 +1,7 @@
+import { RoutesApp } from "./common/routes";
+
 function App() {
-  return <>front</>;
+  return <RoutesApp />;
 }
 
 export default App;
