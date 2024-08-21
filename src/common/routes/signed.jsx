@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { RoutesRecipes } from "../../modules/recipes/routes";
 
 export const Signed = () => {
   return (
     <Routes>
-      <Route path="/form" element={<p>form create</p>} />
-      <Route path="/form/:id" element={<p>esqueceu a senha</p>} />
+      <Route path="/*" element={<RoutesRecipes />} />
       <Route path="/*" element={<Navigate replace to="/not-found" />} />
     </Routes>
   );
