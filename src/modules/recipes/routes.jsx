@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import { Form } from "./pages/Form";
 
 export const RoutesRecipes = () => {
   return (
     <Routes>
-      <Route path="/form" element={<p>form create</p>} />
-      <Route path="/form/:id" element={<p>esqueceu a senha</p>} />
+      <Route path="/form" element={<Form />} />
+      <Route path="/form/:id" element={<p>edit/show</p>} />
     </Routes>
   );
 };

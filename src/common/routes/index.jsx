@@ -1,26 +1,34 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+
+import { store } from "../store";
 
 import { Signed } from "./signed";
 import { NotSigned } from "./not-signed";
 
-import { Navbar } from "../components/navbar";
 import { ListRecipes } from "../../modules/recipes/pages/List";
 import { FilterList } from "../../modules/recipes/pages/Filter";
+import { Navbar } from "../components/Navbar";
 
 export const RoutesApp = () => {
-  const isLogged = false;
+  const isLogged = true;
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Navbar />}>
-          <Route element={<FilterList />}>
-            <Route path="/" element={<ListRecipes />} />
-            <Route path="/*" element={isLogged ? <Signed /> : <NotSigned />} />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Navbar />}>
+            <Route element={<FilterList />}>
+              <Route path="/" element={<ListRecipes />} />
+              <Route
+                path="/*"
+                element={isLogged ? <Signed /> : <NotSigned />}
+              />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="/not-found" element={<p>not found</p>} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="/not-found" element={<p>not found</p>} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
