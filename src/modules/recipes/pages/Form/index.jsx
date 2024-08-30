@@ -15,7 +15,7 @@ export const Form = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
 

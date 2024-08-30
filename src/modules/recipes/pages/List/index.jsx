@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { useGetRecipesQuery } from "../../../../common/slices/recipesApiSlice";
 
 export const ListRecipes = () => {
-  const { data: recipes, error, isLoading } = useGetRecipesQuery();
+  const navigate = useNavigate();
 
+  const filter = useSelector(state => state.filter);
+
+  const { data: recipes, error, isLoading } = useGetRecipesQuery(filter);
   return (
-    <div className="col">
-      <h1 className="my-4">Browser Recipes</h1>
+    <div className="col m-3 position-relative">
+      <h1 className="mb-4">Browser Recipes</h1>
       <div>
         {isLoading ? (
           <p>Loading...</p>
@@ -18,13 +24,20 @@ export const ListRecipes = () => {
                 <div className="col-4 mb-3">
                   <img
                     className="img-fluid"
+                    onClick={() => navigate(`/${recipe._id}`)}
                     src={`/images/${recipe.image}`}
                     alt={recipe.name}
                   />
                 </div>
-                <div className="col-8">
+                <div className="col-8 p-1">
                   <h5 className="card-title">{recipe.name}</h5>
-                  <p>{recipe.description}</p>
+                  <p className="me-3">{recipe.description}</p>
+                  <button
+                    className="btn btn-outline-warning btn-sm"
+                    onClick={() => navigate(`/${recipe._id}`)}
+                  >
+                    View recipe
+                  </button>
                 </div>
               </div>
             );

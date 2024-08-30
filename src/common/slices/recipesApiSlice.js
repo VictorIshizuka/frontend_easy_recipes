@@ -3,16 +3,19 @@ import { apiSlice } from "./apiSlice";
 export const recipesApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getRecipes: builder.query({
-      query: () => "/api/recipes/",
+      query: filter => ({ url: "/api/recipes", params: { ...filter } }),
       providesTags: ["Recipe"],
     }),
-    // getRecipe: builder.query({
-    //   query: id => `/${id}`,
-    //   providesTags: ["Recipe"],
-    // }),
+    getRecipe: builder.query({
+      query: id => {
+        console.log(id);
+        return `/api/recipes/${id}`;
+      },
+      providesTags: ["Recipe"],
+    }),
     addRecipe: builder.mutation({
       query: newRecipe => ({
-        url: "/api/recipes/",
+        url: "/api/recipes",
         method: "POST",
         body: newRecipe,
       }),
@@ -20,7 +23,7 @@ export const recipesApiSlice = apiSlice.injectEndpoints({
     }),
     uploadImage: builder.mutation({
       query: image => ({
-        url: "/api/recipes/upload/",
+        url: "/api/recipes/upload",
         method: "POST",
         body: image,
       }),
@@ -49,5 +52,5 @@ export const {
   useUploadImageMutation,
   // useUpdateRecipeMutation,
   // useDeleteRecipeMutation,
-  // useGetRecipeQuery,
+  useGetRecipeQuery,
 } = recipesApiSlice;

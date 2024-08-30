@@ -7,7 +7,6 @@ import { Signed } from "./signed";
 import { NotSigned } from "./not-signed";
 
 import { ListRecipes } from "../../modules/recipes/pages/List";
-import { FilterList } from "../../modules/recipes/pages/Filter";
 import { Navbar } from "../components/Navbar";
 
 export const RoutesApp = () => {
@@ -17,13 +16,8 @@ export const RoutesApp = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Navbar />}>
-            <Route element={<FilterList />}>
-              <Route path="/" element={<ListRecipes />} />
-              <Route
-                path="/*"
-                element={isLogged ? <Signed /> : <NotSigned />}
-              />
-            </Route>
+            <Route path="/" element={<ListRecipes />} />
+            <Route path="/*" element={isLogged ? <Signed /> : <NotSigned />} />
           </Route>
 
           <Route path="/not-found" element={<p>not found</p>} />

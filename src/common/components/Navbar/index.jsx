@@ -2,6 +2,8 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { FilterList } from "../../../modules/recipes/pages/Filter";
+
 export const Navbar = () => {
   const navigate = useNavigate();
   const isLogged = true;
@@ -45,7 +47,10 @@ export const Navbar = () => {
         </div>
       </header>
       <ToastContainer />
-      <Outlet />
+      <div className="row">
+        <FilterList />
+        <Outlet />
+      </div>
     </>
   );
 };
