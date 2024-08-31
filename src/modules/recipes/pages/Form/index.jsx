@@ -77,7 +77,7 @@ export const Form = () => {
   }
 
   return (
-    <div className="col">
+    <>
       <h4 className="mt-4 text-center">Add Recipe</h4>
       <div className="d-flex justify-content-center">
         <form className="w-50" onSubmit={onSubmit}>
@@ -184,6 +184,6 @@ export const Form = () => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };

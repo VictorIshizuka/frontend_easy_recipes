@@ -10,13 +10,13 @@ export const ListRecipes = () => {
 
   const { data: recipes, error, isLoading } = useGetRecipesQuery(filter);
   return (
-    <div className="col m-3 position-relative">
+    <div className=" m-3 position-relative">
       <h1 className="mb-4">Browser Recipes</h1>
       <div>
         {isLoading ? (
           <p>Loading...</p>
         ) : error ? (
-          error
+          error.data?.message
         ) : (
           recipes?.map((recipe, index) => {
             return (
@@ -24,7 +24,7 @@ export const ListRecipes = () => {
                 <div className="col-4 mb-3">
                   <img
                     className="img-fluid"
-                    onClick={() => navigate(`/${recipe._id}`)}
+                    onClick={() => navigate(`/item/${recipe._id}`)}
                     src={`/images/${recipe.image}`}
                     alt={recipe.name}
                   />
@@ -34,7 +34,7 @@ export const ListRecipes = () => {
                   <p className="me-3">{recipe.description}</p>
                   <button
                     className="btn btn-outline-warning btn-sm"
-                    onClick={() => navigate(`/${recipe._id}`)}
+                    onClick={() => navigate(`/item/${recipe._id}`)}
                   >
                     View recipe
                   </button>

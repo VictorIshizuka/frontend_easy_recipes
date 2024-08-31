@@ -4,11 +4,12 @@ import { useGetRecipeQuery } from "../../../../common/slices/recipesApiSlice";
 
 export const Item = () => {
   const params = useParams();
+  console.log({ params });
   const navigate = useNavigate();
 
   const { data: recipe, isLoading, error } = useGetRecipeQuery(params.id);
   return (
-    <div className="col">
+    <>
       {isLoading ? (
         "Loading..."
       ) : error ? (
@@ -29,6 +30,6 @@ export const Item = () => {
       <button className="btn btn-secondary mt-3" onClick={() => navigate("/")}>
         Back to home
       </button>
-    </div>
+    </>
   );
 };
