@@ -30,7 +30,13 @@ export const ListRecipes = () => {
                   />
                 </div>
                 <div className="col-8 p-1">
-                  <h5 className="card-title">{recipe.name}</h5>
+                  <h5 className="card-title">
+                    {recipe.name}{" "}
+                    <span className="badge bg-success">{recipe.author}</span>
+                    <span className="badge bg-info mx-1">
+                      {recipe.difficulty}
+                    </span>
+                  </h5>
                   <p className="me-3">{recipe.description}</p>
                   <button
                     className="btn btn-outline-warning btn-sm"

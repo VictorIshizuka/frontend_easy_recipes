@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import JodiEditor from "jodit-react";
 import { toast } from "react-toastify";
 
 import { useGetCategoriesQuery } from "../../../../common/slices/categoriesApiSlice";
@@ -11,21 +12,21 @@ import {
 
 export const Form = () => {
   const navigate = useNavigate();
+  const editor = useRef(null);
 
   const [name, setName] = useState("");
+  const [body, setBody] = useState("");
+  const [image, setImage] = useState();
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [image, setImage] = useState();
   const [description, setDescription] = useState("");
-  const [body, setBody] = useState("");
 
-  const [selectFile, setSelectFile] = useState(null);
   const [preview, setPreview] = useState(null);
-
-  const { data: categories } = useGetCategoriesQuery();
+  const [selectFile, setSelectFile] = useState(null);
 
   const [addRecipe] = useAddRecipeMutation();
   const [uploadImage] = useUploadImageMutation();
+  const { data: categories } = useGetCategoriesQuery();
 
   useEffect(() => {
     if (!selectFile) {
@@ -159,11 +160,17 @@ export const Form = () => {
           <div className="row mb-5">
             <div className="col">
               <label className="form-label">Body</label>
-              <textarea
+              {/* <textarea
                 type="text"
                 value={body}
                 onChange={e => setBody(e.target.value)}
                 className="form-control h-100"
+              /> */}
+              <JodiEditor
+                ref={editor}
+                value={body}
+                onChange={newContent => setBody(newContent)}
+                className="jodit-workplace"
               />
             </div>
           </div>
